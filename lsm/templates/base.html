@@ -1,0 +1,24 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>{% block title %}live stream{% endblock %}</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="theme-color" content="#07ffff">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" charset="utf-8">
+
+	<script src="{% static "js/lib/jquery-2.1.4.min.js" %}"></script>
+	<script src="{% static "js/lib/jquery.countdown.min.js" %}"></script>
+	<script src="{% static "js/global.js" %}"></script>
+</head>
+<body>
+	{% block content %}{% endblock %}
+
+	{% block js %}{% endblock %}
+</body>
+</html>

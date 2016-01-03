@@ -1,0 +1,87 @@
+{% load static from staticfiles %}
+{% load get_categories from category %}
+{% get_categories as categories %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>{% block title %}withaliasing{% endblock %}</title>
+	<meta name="description" content="with aliasing | a nice place on the internet">
+	<meta name="keywords" content="withaliasing, games, development, jam, indie">
+	<meta name="theme-color" content="#07ffff">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="{% static "img/logo.png" %}">
+
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" charset="utf-8">
+	<link rel="stylesheet" href="{% static 'css/monokai.css' %}" type="text/css" charset="utf-8">
+
+	{% if user.is_authenticated %}
+		<link rel="stylesheet" href="{% static 'css/panel.css' %}" type="text/css" charset="utf-8">
+	{% endif %}
+
+	{% block css %}{% endblock %}
+	{% block js_head %}{% endblock %}
+</head>
+<body>
+	{% block header %}
+		<section id="header" class="noselect">
+			<div><h1><a href="/">with aliasing</a></h1></div>
+			<nav>
+				<ul>
+					<li><a href="/"><h4>blog</h4></a></li>
+					<li><a href="/howtos"><h4>howtos</h4></a></li>
+					<li><a href="/games"><h4>games</h4></a></li>
+				</ul>
+			</nav>
+		</section>
+	{% endblock %}
+
+	{% block tab %}
+		<section id="tab" class="noselect">
+			<div id="tab_content" class="tab_selected">content</div>
+			<div id="tab_info" >info</div>
+		</section>
+	{% endblock %}
+
+	{% block content %}{% endblock %}
+
+	{% block info %}
+		<section id="info">
+			{% if user.is_authenticated %}
+				<div class="card info_card">
+					<div class="card_content">
+						<p><a href="/add_entry">add entry</a> / <a href="/all_entries">all entries</a></p>
+						<p><a href="/add_category">add category</a></p>
+						<hr>
+						<p><a href="#">analytics</a></p>
+						<p><a href="https://withaliasing.disqus.com/admin/">disqus</a></p>
+					</div>
+				</div>
+			{% endif %}
+
+			<div class="card info_card">
+				<div class="card_content">
+					<p><a href="mailto:dortamiguel@gmail.com" target="_blank"><img class="info_icon" src="{% static "img/icon/mail.png" %}" alt="mail" /></a></p>
+					<p><a href="https://twitter.com/ellipticaldoor" target="_blank"><img class="info_icon" src="{% static "img/icon/twitter.png" %}" alt="twitter" /></a></p>
+					<p><a href="https://github.com/ellipticaldoor/" target="_blank"><img class="info_icon" src="{% static "img/icon/github.png" %}" alt="github" /></a></p>
+					<p><a href="/rss"><img class="info_icon" src="{% static "img/icon/rss.png" %}" alt="rss" /></a></p>
+				</div>
+			</div>
+
+			<div class="card info_card">
+				<h1 class="card_title">categories</h1>
+				<div class="card_content">
+					{% for category in categories %}
+						<p><a class="info_category_link" href="{{ category.get_absolute_url }}">{{ category.pk }}</a></p>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+	{% endblock %}
+
+	<script src="{% static "js/lib/zepto_1.1.6.min.js" %}"></script>
+	<script src="{% static "js/global.js" %}"></script>
+	{% block js %}{% endblock %}
+</body>
+</html>

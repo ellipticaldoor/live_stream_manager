@@ -11,3 +11,4 @@ __pycache__/
 todo.md
 .ftpconfig
 .sqlite3
+migrations/

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="panel_container">
+	<div id="form_container">
+		<input id="date" type="date" name="date" value="">
+		<input id="time" type="time" name="time" value="">
+		<select>
+			<option value="grabado">grabado</option>
+			<option value="streaming">streaming</option>
+		</select>
+		<input type="text" name="ylink" id="ylink" placeholder="Youtube link"/>
+		<div class="form_separator"></div>
+		<input id="add" type="button" name="name" value="Añadir">
+	</div>
+</div>
+{% endblock %}

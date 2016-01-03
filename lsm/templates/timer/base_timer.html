@@ -1,5 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="timer_container">
+	<div id="video">
+		<iframe width="100%" height="100%" src="https://www.youtube.com/embed/Qi7KDOAj4Xo" frameborder="0" allowfullscreen></iframe>
+	</div>
+
+	<div id="timer" class="clock">
+		<span id="clock"></span>
+	</div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
 $(document).ready(function() {
-	time = 1000 * 60 * 60;
+	time = 1000 * 60 * 1;
 	now = new Date();
 
 	var clock = $('#clock');
@@ -24,3 +40,5 @@ function autoPlayVideo(vcode, width, height){
 	"use strict";
 	$("#video").html('<iframe width="'+width+'" height="'+height+'" src="https://www.youtube.com/embed/'+vcode+'?autoplay=1&loop=1&rel=0&wmode=transparent" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
 }
+</script>
+{% endblock %}
