@@ -3,15 +3,22 @@
 {% block content %}
 <div id="panel_container">
 	<div id="form_container">
-		<input id="date" type="date" name="date" value="">
-		<input id="time" type="time" name="time" value="">
-		<select>
-			<option value="grabado">grabado</option>
-			<option value="streaming">streaming</option>
-		</select>
-		<input type="text" name="ylink" id="ylink" placeholder="Youtube link"/>
-		<div class="form_separator"></div>
-		<input id="add" type="button" name="name" value="Añadir">
+		{{ form.non_field_errors }}
+
+		<form class="form-horizontal" action="/panel/"  method="post">
+			{% csrf_token %}
+
+			{{ form.videourlid.errors }}
+			{{ form.videourlid }}
+
+			{{ form.user.errors }}
+			{{ form.user }}
+
+			{{ form.status.errors }}
+			{{ form.status }}
+
+			<input id="add" type="submit" value="Añadir" />
+		</form>
 	</div>
 </div>
 {% endblock %}
