@@ -2,9 +2,7 @@
 
 {% block content %}
 <div id="timer_container">
-	<div id="video">
-		<iframe width="100%" height="100%" src="https://www.youtube.com/embed/Qi7KDOAj4Xo" frameborder="0" allowfullscreen></iframe>
-	</div>
+	<div id="video"></div>
 
 	<div id="timer" class="clock">
 		<span id="clock"></span>
@@ -15,7 +13,19 @@
 {% block js %}
 <script>
 $(document).ready(function() {
-	time = 1000 * 60 * 1;
+	var time = 1000 * 1 * 1;
+	var current_video = 0;
+
+	var youtube_videos = [
+		{"linkID": "Qi7KDOAj4Xo", "date": "2020/10/10 12:34:56", "status": "recorded"},
+		{"linkID": "lTXGz68Qz0g", "date": "2020/10/10 12:34:56", "status": "recorded"},
+		{"linkID": "dghosA-zI6k", "date": "2020/10/10 12:34:56", "status": "recorded"},
+	]
+
+	setTimer(time, youtube_videos[current_video].linkID)
+});
+
+function setTimer(time, linkID) {
 	now = new Date();
 
 	var clock = $('#clock');
@@ -28,13 +38,12 @@ $(document).ready(function() {
 	});
 
 	clock.on('finish.countdown', function(event) {
-		console.log('finished ;)');
 		$('#timer').hide();
 		$('#video').show();
 
-		autoPlayVideo('Qi7KDOAj4Xo','100%','100%');
+		autoPlayVideo(linkID,'100%','100%');
 	});
-});
+}
 
 function autoPlayVideo(vcode, width, height){
 	"use strict";
