@@ -2,7 +2,9 @@
 
 {% block content %}
 <div id="timer_container">
-	<div id="video"></div>
+	<div id="video">
+		<div id="video_player"></div>
+	</div>
 
 	<div id="timer" class="clock">
 		<span id="clock"></span>
@@ -13,41 +15,60 @@
 {% block js %}
 <script>
 $(document).ready(function() {
-	var time = 1000 * 60 * 1;
 	var current_video = 0;
 
 	var youtube_videos = [
-		{"linkID": "Qi7KDOAj4Xo", "date": "2020/10/10 12:34:56", "status": "recorded"},
-		{"linkID": "lTXGz68Qz0g", "date": "2020/10/10 12:34:56", "status": "recorded"},
-		{"linkID": "dghosA-zI6k", "date": "2020/10/10 12:34:56", "status": "recorded"},
+		{"linkID": "jhFDyDgMVUI", "date": "2016/01/04 23:36:00"},
+		{"linkID": "UiyDmqO59QE", "date": "2016/01/04 23:50:00"},
+		{"linkID": "kfchvCyHmsc", "date": "2016/01/04 23:12:00"},
 	]
 
-	setTimer(time, youtube_videos[current_video].linkID)
+	setTimer(youtube_videos[current_video])
+
+	function setTimer(video) {
+		var clock = $('#clock');
+
+		clock.countdown(video.date);
+
+		clock.on('update.countdown', function(event) {
+			var totalHours = event.offset.totalDays * 24 + event.offset.hours;
+			$(this).html(event.strftime(totalHours + ' hr  %M min  %S seg'));
+		});
+
+		clock.on('finish.countdown', function(event) {
+			$('#timer').hide();
+			$('#video').show();
+
+			loadVideo(video.linkID);
+		});
+	}
+
+	function loadVideo(linkID) {
+		var player = new YT.Player('video_player', {
+			width: '100%',
+			height: '100%',
+			videoId: linkID,
+			events: {
+				'onReady': onPlayerReady,
+				'onStateChange': onPlayerStateChange
+			}
+		});
+	}
+
+	function onPlayerReady(event) {
+		event.target.playVideo();
+	}
+
+	function onPlayerStateChange(event) {
+		if (event.data === 0) {
+			$('#timer').show();
+			$('#video').hide();
+			current_video = current_video + 1;
+			setTimer(youtube_videos[current_video])
+		}
+	}
 });
-
-function setTimer(time, linkID) {
-	now = new Date();
-
-	var clock = $('#clock');
-
-	clock.countdown(now.getTime() + time);
-
-	clock.on('update.countdown', function(event) {
-		var totalHours = event.offset.totalDays * 24 + event.offset.hours;
-		$(this).html(event.strftime(totalHours + ' hr  %M min  %S seg'));
-	});
-
-	clock.on('finish.countdown', function(event) {
-		$('#timer').hide();
-		$('#video').show();
-
-		autoPlayVideo(linkID,'100%','100%');
-	});
-}
-
-function autoPlayVideo(vcode, width, height){
-	"use strict";
-	$("#video").html('<iframe width="'+width+'" height="'+height+'" src="https://www.youtube.com/embed/'+vcode+'?autoplay=1&loop=1&rel=0&wmode=transparent" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
-}
 </script>
+
+<script src="http://www.youtube.com/player_api"></script>
 {% endblock %}
