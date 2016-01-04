@@ -205,3 +205,12 @@ __________________________________________________________________________ */
 	padding: 6px 18px;
 	border-radius: 4px;
 }
+
+.video_info {
+	border: 1px solid #C7C7CC;
+	margin: 0.5em;
+	padding: 1em;
+	border-radius: 2px;
+	width: 40%;
+	float: left;
+}

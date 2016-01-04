@@ -11,14 +11,30 @@
 			{{ form.videourlid.errors }}
 			{{ form.videourlid }}
 
+			<div class="form_separator"></div>
+
+			<input id="date" type="date" name="date" value="">
+			<input id="time" type="time" name="time" value="">
+
 			{{ form.user.errors }}
 			{{ form.user }}
 
 			{{ form.status.errors }}
 			{{ form.status }}
 
+			<div class="form_separator"></div>
+
 			<input id="add" type="submit" value="Añadir" />
 		</form>
+	</div>
+
+	<div id="calendar_container">
+		{% for video in videos %}
+			<div class="video_info">
+				<p>{{ video.videourlid }}</p>
+				<p>{{ video.aired_date }}</p>
+			</div>
+		{% endfor %}
 	</div>
 </div>
 {% endblock %}
