@@ -27,14 +27,14 @@
 			<input id="add" type="submit" value="Añadir" />
 		</form>
 	</div>
+</div>
 
-	<div id="calendar_container">
-		{% for video in videos %}
-			<div class="video_info">
-				<p>{{ video.videourlid }}</p>
-				<p>{{ video.aired_date }}</p>
-			</div>
-		{% endfor %}
-	</div>
+<div id="calendar_container">
+	{% for video in videos %}
+		<div class="video_info">
+			<p>{{ video.videourlid }}</p>
+			<p>{{ video.aired_date }}</p>
+		</div>
+	{% endfor %}
 </div>
 {% endblock %}

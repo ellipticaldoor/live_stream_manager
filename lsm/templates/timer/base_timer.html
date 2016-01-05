@@ -18,9 +18,12 @@ $(document).ready(function() {
 	var current_video = 0;
 
 	var youtube_videos = [
-		{"linkID": "jhFDyDgMVUI", "date": "2016/01/04 23:36:00"},
-		{"linkID": "UiyDmqO59QE", "date": "2016/01/04 23:50:00"},
-		{"linkID": "kfchvCyHmsc", "date": "2016/01/04 23:12:00"},
+		// {"linkID": "jhFDyDgMVUI", "date": "2016/01/10 23:36:00"},
+		// {"linkID": "UiyDmqO59QE", "date": "2016/01/04 23:50:00"},
+		// {"linkID": "kfchvCyHmsc", "date": "2016/01/04 23:12:00"},
+		{% for video in object_list %}
+			{"linkID": "{{ video.videourlid }}", "date": "{{ video.aired_date | date:"Y/m/d H:i" }}:00"},
+		{% endfor %}
 	]
 
 	setTimer(youtube_videos[current_video])

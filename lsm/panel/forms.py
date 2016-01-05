@@ -8,6 +8,7 @@ class TimerForm(forms.ModelForm):
 		super(TimerForm, self).__init__(*args, **kwargs)
 		self.fields['videourlid'].widget.attrs.update({
 				'required': 'required',
+				'placeholder': 'youtube link',
 			})
 
 	class Meta:
