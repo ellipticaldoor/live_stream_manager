@@ -40,6 +40,12 @@ input
 	font-size: 115%;
 }
 
+a {
+	color: #34AADC;
+	text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
 
 
 /* input
@@ -206,10 +212,40 @@ __________________________________________________________________________ */
 }
 
 .video_info {
-	border: 1px solid #C7C7CC;
-	margin: 0.5em;
-	padding: 1em;
-	border-radius: 2px;
-	width: 40%;
+	border: 1px solid #5856D6;
+	margin-left: 1em;
+	margin-bottom: 1em;
+	/*border-radius: 2px;*/
+	width: calc(25% - 1em - 0.25em);
 	float: left;
+	font-size: 95%;
+}
+
+.title {
+	padding: 0.5em;
+	background-color: #5856D6;
+	color: white;
+}
+
+.calendar_card {
+	padding: 1em;
+	border-bottom: 1px solid #5856D6;
+}
+
+.video_date {
+
+}
+
+.watch {
+	float: left;
+	padding: 0.5em;
+}
+
+.watch a {
+	color: #FF3B30;
+}
+
+.edit {
+	float: right;
+	padding: 0.5em;
 }

@@ -32,9 +32,25 @@
 <div id="calendar_container">
 	{% for video in videos %}
 		<div class="video_info">
-			<p>{{ video.videourlid }}</p>
-			<p>{{ video.aired_date }}</p>
+			<p class="title">{{ video.user }}</p>
+			<div class="calendar_card">
+				<p class="video_date">{{ video.aired_date | date:"d/m/Y H:i" }}</p>
+			</div>
+			<p class="watch"><a href="https://www.youtube.com/watch?v={{ video.videourlid }}">Ver video</a></p>
+			<p class="edit"><a href="#">editar</a></p>
 		</div>
 	{% endfor %}
+
+	{% for video in videos %}
+		<div class="video_info">
+			<p class="title">{{ video.user }}</p>
+			<div class="calendar_card">
+				<p class="video_date">{{ video.aired_date | date:"d/m/Y H:i" }}</p>
+			</div>
+			<p class="watch"><a href="https://www.youtube.com/watch?v={{ video.videourlid }}">Ver video</a></p>
+			<p class="edit"><a href="#">editar</a></p>
+		</div>
+	{% endfor %}
+
 </div>
 {% endblock %}

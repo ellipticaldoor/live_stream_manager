@@ -11,6 +11,10 @@ class TimerForm(forms.ModelForm):
 				'placeholder': 'youtube link',
 			})
 
+		self.fields['user'].widget.attrs.update({
+				'required': 'required',
+			})
+
 	class Meta:
 		model = Video
-		fields = ('videourlid',)
+		fields = ('videourlid', 'user')
