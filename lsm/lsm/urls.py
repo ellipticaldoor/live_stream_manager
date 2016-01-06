@@ -21,4 +21,5 @@ urlpatterns += patterns(
 	url(r'^', include('user.urls')),
 	url(r'^', include('panel.urls')),
 	url(r'^', include('timer.urls')),
+	url(r'^', include('tablet.urls')),
 )

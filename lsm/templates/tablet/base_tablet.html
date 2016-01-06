@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}videos{% endblock %}
+
+{% block content %}
+<div id="videos_container">
+	{% for video in object_list  %}
+		<p>
+			{{ video.pk }}
+		</p>
+	{% endfor %}
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+$(document).ready(function() {
+	console.log("hoolas");
+});
+</script>
+{% endblock %}

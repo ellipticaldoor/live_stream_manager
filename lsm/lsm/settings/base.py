@@ -29,6 +29,7 @@ INSTALLED_APPS = (
 	'user',
 	'panel',
 	'timer',
+	'tablet',
 )
 
 MIDDLEWARE_CLASSES = (

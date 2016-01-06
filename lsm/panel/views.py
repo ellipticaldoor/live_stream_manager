@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from django.views.generic.edit import CreateView, UpdateView
-from django.views.generic import View, DetailView, ListView
 
 from panel.models import Video
 from panel.forms import TimerForm
