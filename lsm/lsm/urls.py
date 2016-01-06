@@ -18,6 +18,7 @@ if settings.DEBUG:
 urlpatterns += patterns(
 	'',
 	url(r'^admin/', include(admin.site.urls)),
+	url(r'^', include('user.urls')),
 	url(r'^', include('panel.urls')),
 	url(r'^', include('timer.urls')),
 )

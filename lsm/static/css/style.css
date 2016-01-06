@@ -64,6 +64,7 @@ input {
 	box-shadow: none;
 	height: 2em;
 	margin: 0.4em;
+	max-width: 100%;
 }
 
 input:focus { border: 2px solid #007AFF; }
@@ -212,15 +213,16 @@ __________________________________________________________________________ */
 }
 
 #panel_container {
-	width: 80%;
-	margin: 0 auto;
+	width: 100%;
+	max-width: 800px;
+	margin: 0 2em;
 	overflow: auto;
 }
 
 #form_container {
-	padding: 20px 30px;
+	padding: 20px 0;
 	overflow: auto;
-	margin: 20px 30px 15px 30px;
+	margin: 20px 0 15px 0;
 }
 
 #add {
@@ -285,4 +287,22 @@ __________________________________________________________________________ */
 
 .tab {
 	display: none;
+}
+
+
+/* login
+__________________________________________________________________________ */
+
+.card {
+	width: 300px;
+	border: 3px solid #52EDC7;
+	overflow: auto;
+	padding: 1em;
+	margin: 0 auto;
+	margin-top: 3em;
+}
+
+#id_username, #id_password {
+	width: calc(100% - 15px);
+	display: block;
 }
