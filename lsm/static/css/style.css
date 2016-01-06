@@ -55,7 +55,7 @@ input {
 	color: #8E8E93;
 	padding: 5px;
 	border-radius: 2px;
-	border: 2px solid #F7F7F7;
+	border: 2px solid #E7E7E7;
 	outline: none;
 	-moz-appearance: none;
 	-webkit-appearance: none;
@@ -189,6 +189,28 @@ __________________________________________________________________________ */
 	clear:both;
 }
 
+#nav a {
+	font-size: 120%;
+	margin-left: 0.8em;
+	color: #EF4DB6;
+}
+
+#nav_panel {
+	font-size: 150% !important;
+	color: #C643FC !important;
+}
+
+#nav {
+
+	padding-top: 1em;
+}
+
+#next_video_countdown {
+	float: right;
+	margin-right: 3em;
+	font-size: 110%;
+}
+
 #panel_container {
 	width: 80%;
 	margin: 0 auto;
@@ -198,24 +220,26 @@ __________________________________________________________________________ */
 #form_container {
 	padding: 20px 30px;
 	overflow: auto;
-
-	border-top: 1px solid #FF3A2D;
-	border-bottom: 1px solid #FF3A2D;
-	margin: 30px;
+	margin: 20px 30px 15px 30px;
 }
 
 #add {
-	background-color: #FF3A2D;
+	background-color: #EF4DB6;
 	color: white;
 	padding: 6px 18px;
 	border-radius: 4px;
 }
 
+#editing {
+	color: #5856D6;
+	font-size: 150%;
+	padding-bottom: 0.5em;
+}
+
 .video_info {
-	border: 1px solid #5856D6;
+	border: 1px solid #34AADC;
 	margin-left: 1em;
 	margin-bottom: 1em;
-	/*border-radius: 2px;*/
 	width: calc(25% - 1em - 0.25em);
 	float: left;
 	font-size: 95%;
@@ -223,17 +247,13 @@ __________________________________________________________________________ */
 
 .title {
 	padding: 0.5em;
-	background-color: #5856D6;
+	background-color: #34AADC;
 	color: white;
 }
 
 .calendar_card {
 	padding: 1em;
-	border-bottom: 1px solid #5856D6;
-}
-
-.video_date {
-
+	border-bottom: 1px solid #34AADC;
 }
 
 .watch {
@@ -241,11 +261,28 @@ __________________________________________________________________________ */
 	padding: 0.5em;
 }
 
-.watch a {
-	color: #FF3B30;
-}
+.watch a { color: #FF5E3A; }
 
 .edit {
 	float: right;
 	padding: 0.5em;
+}
+
+#tab_container {
+	border-bottom: 2px solid #5856D6;
+	margin: 0 1.5em 1.5em 1.5em;
+	padding: 0.6em;
+}
+
+#tab_container a {
+	margin-right: 1.2em;
+	color: #5856D6;
+}
+
+.tab_selected {
+	font-weight: bold;
+}
+
+.tab {
+	display: none;
 }

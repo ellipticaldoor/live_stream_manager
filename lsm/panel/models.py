@@ -20,4 +20,4 @@ class Video(models.Model):
 
 	class Meta:
 		verbose_name_plural = 'Videos'
-		ordering = ['-created']
+		ordering = ['aired_date']

@@ -1,9 +1,11 @@
 from django.conf.urls import patterns, url
+from django.contrib.auth.decorators import login_required
 
 from panel import views
 
 
 urlpatterns = patterns(
 	'',
-	url(r'^panel/$', views.TimerView.as_view(), name='panel'),
+	url(r'^panel/$', login_required(views.TimerView.as_view()), name='panel'),
+	url(r'^(?P<pk>[-\w]+)/edit/$', login_required(views.EditTimerView.as_view()), name='edit'),
 )

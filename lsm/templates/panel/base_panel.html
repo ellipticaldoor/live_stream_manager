@@ -1,20 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div id="nav">
+	<a id="nav_panel" href="/panel">Panel</a>
+	<a href="/" target="_blank">timer</a>
+	<a href="https://www.youtube.com/my_live_events" target="_blank">youtube</a>
+	<span id="next_video_countdown"></span>
+</div>
+
 <div id="panel_container">
 	<div id="form_container">
 		{{ form.non_field_errors }}
-
-		<form class="form-horizontal" action="/panel/"  method="post">
+		<form class="form-horizontal" action="{% if edit_video %}/{{ edit_video.pk }}/edit/{% else %}/panel/{% endif %}"  method="post">
 			{% csrf_token %}
+
+			{% if edit_video %}
+				<p id="editing">Editando {{ edit_video.pk }}</p>
+				<div class="form_separator"></div>
+			{% endif %}
 
 			{{ form.videourlid.errors }}
 			{{ form.videourlid }}
 
 			<div class="form_separator"></div>
 
-			<input id="date" type="date" name="date" value="" required="required" placeholder="dd/mm/yyyy">
-			<input id="time" type="time" name="time" value="" required="required" placeholder="00:00">
+			<input id="date" type="date" name="date" value="{{ edit_video.aired_date | date:"Y-m-d" }}" required="required" placeholder="dd/mm/yyyy">
+			<input id="time" type="time" name="time" value="{{ edit_video.aired_date | date:"H:i" }}" required="required" placeholder="00:00">
 
 			{{ form.user.errors }}
 			{{ form.user }}
@@ -24,33 +35,105 @@
 
 			<div class="form_separator"></div>
 
-			<input id="add" type="submit" value="Añadir" />
+			<input id="add" type="submit" value="submit" />
 		</form>
 	</div>
 </div>
 
+{% if not edit_video %}
 <div id="calendar_container">
-	{% for video in videos %}
-		<div class="video_info">
-			<p class="title">{{ video.user }}</p>
-			<div class="calendar_card">
-				<p class="video_date">{{ video.aired_date | date:"d/m/Y H:i" }}</p>
-			</div>
-			<p class="watch"><a href="https://www.youtube.com/watch?v={{ video.videourlid }}">Ver video</a></p>
-			<p class="edit"><a href="#">editar</a></p>
-		</div>
-	{% endfor %}
 
-	{% for video in videos %}
-		<div class="video_info">
-			<p class="title">{{ video.user }}</p>
-			<div class="calendar_card">
-				<p class="video_date">{{ video.aired_date | date:"d/m/Y H:i" }}</p>
-			</div>
-			<p class="watch"><a href="https://www.youtube.com/watch?v={{ video.videourlid }}">Ver video</a></p>
-			<p class="edit"><a href="#">editar</a></p>
-		</div>
-	{% endfor %}
+	<div id="tab_container"class="">
+		<a id="nexts_tab_link" class="tab_link tab_selected" href="#">Siguientes</a>
+		<a id="my_videos_tab_link" class="tab_link"href="#">Mis videos</a>
+		<a id="all_videos_tab_link" class="tab_link"href="#">Todos</a>
+	</div>
 
+	<div id="nexts_tab" class="tab">
+		{% for video in videos %}
+			<div class="video_info">
+				<p class="title">{{ video.user }}</p>
+				<div class="calendar_card">
+					<p class="video_date">{{ video.aired_date | date:"d/m/Y H:i" }}</p>
+				</div>
+				<p class="watch"><a href="https://www.youtube.com/watch?v={{ video.videourlid }}" target="_blank">Ver video</a></p>
+				<p class="edit"><a href="/{{ video.pk }}/edit">editar</a></p>
+			</div>
+		{% endfor %}
+	</div>
+
+	<div id="my_videos_tab" class="tab">
+		{% for video in my_videos %}
+			<div class="video_info">
+				<p class="title">{{ video.user }}</p>
+				<div class="calendar_card">
+					<p class="video_date">{{ video.aired_date | date:"d/m/Y H:i" }}</p>
+				</div>
+				<p class="watch"><a href="https://www.youtube.com/watch?v={{ video.videourlid }}" target="_blank">Ver video</a></p>
+				<p class="edit"><a href="/{{ video.pk }}/edit">editar</a></p>
+			</div>
+		{% endfor %}
+	</div>
+
+	<div id="all_videos_tab" class="tab">
+		{% for video in all_videos %}
+			<div class="video_info">
+				<p class="title">{{ video.user }}</p>
+				<div class="calendar_card">
+					<p class="video_date">{{ video.aired_date | date:"d/m/Y H:i" }}</p>
+				</div>
+				<p class="watch"><a href="https://www.youtube.com/watch?v={{ video.videourlid }}" target="_blank">Ver video</a></p>
+				<p class="edit"><a href="/{{ video.pk }}/edit">editar</a></p>
+			</div>
+		{% endfor %}
+	</div>
 </div>
+{% endif %}
+{% endblock %}
+
+{% block js %}
+<script>
+$(document).ready(function() {
+	var clock = $('#next_video_countdown');
+
+	clock.countdown("{{ next_video_date.aired_date | date:"Y/m/d H:i" }}");
+
+	clock.on('update.countdown', function(event) {
+		var totalHours = event.offset.totalDays * 24 + event.offset.hours;
+		$(this).html(event.strftime(totalHours + ' hr  %M min  %S seg'));
+	});
+
+	var current_tab = "#nexts_tab";
+
+	set_tab();
+	$("#nexts_tab_link").addClass("tab_selected")
+
+	$("#nexts_tab_link").click(function( event ) {
+		event.preventDefault();
+		current_tab = "#nexts_tab";
+		set_tab();
+		$("#nexts_tab_link").addClass("tab_selected")
+	});
+
+	$("#my_videos_tab_link").click(function( event ) {
+		event.preventDefault();
+		current_tab = "#my_videos_tab";
+		set_tab();
+		$("#my_videos_tab_link").addClass("tab_selected")
+	});
+
+	$("#all_videos_tab_link").click(function( event ) {
+		event.preventDefault();
+		current_tab = "#all_videos_tab";
+		set_tab();
+		$("#all_videos_tab_link").addClass("tab_selected")
+	});
+
+	function set_tab() {
+		$(".tab").hide();
+		$(".tab_link").removeClass("tab_selected")
+		$(current_tab).show();
+	}
+});
+</script>
 {% endblock %}
