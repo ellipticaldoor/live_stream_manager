@@ -134,6 +134,20 @@ $(document).ready(function() {
 		$(".tab_link").removeClass("tab_selected")
 		$(current_tab).show();
 	}
+
+	$("#id_videourlid").on('paste', function () {
+		console.log($("#id_videourlid").val());
+
+		setTimeout( function() {
+			$("#id_videourlid").val( youtube_parser( $("#id_videourlid").val() ) );
+		}, 100);
+	});
+
+	function youtube_parser(url){
+		var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+		var match = url.match(regExp);
+		return (match&&match[7].length==11)? match[7] : false;
+	}
 });
 </script>
 {% endblock %}
