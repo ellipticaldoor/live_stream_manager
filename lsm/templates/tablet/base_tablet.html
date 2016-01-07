@@ -28,7 +28,6 @@ $(document).ready(function() {
 	});
 
 	function showVideo(video_id) {
-		$("#videos_container").hide();
 		$("#video_player_container").show();
 
 		var player = new YT.Player('videos_player', {
@@ -41,7 +40,6 @@ $(document).ready(function() {
 
 	$("#close").click(function( event ) {
 		event.preventDefault();
-		$("#videos_container").show();
 		$("#video_player_container").hide();
 		$( "iframe" ).remove();
 		$( '<div id="videos_player"></div>' ).insertBefore( "#close" );
