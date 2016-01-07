@@ -239,11 +239,14 @@ __________________________________________________________________________ */
 }
 
 .video_info {
-	border: 1px solid #34AADC;
-	margin-left: 1em;
-	margin-bottom: 1em;
-	width: calc(25% - 1em - 0.25em);
 	float: left;
+
+	width: calc(25% - 1em - 0.25em);
+	margin-bottom: 1em;
+	margin-left: 1em;
+
+	border: 1px solid #34AADC;
+
 	font-size: 95%;
 }
 
@@ -294,12 +297,14 @@ __________________________________________________________________________ */
 __________________________________________________________________________ */
 
 .card {
-	width: 300px;
-	border: 3px solid #52EDC7;
 	overflow: auto;
-	padding: 1em;
+
+	width: 300px;
 	margin: 0 auto;
 	margin-top: 3em;
+	padding: 1em;
+
+	border: 3px solid #52EDC7;
 }
 
 #id_username, #id_password {
@@ -311,6 +316,52 @@ __________________________________________________________________________ */
 /* tablet
 __________________________________________________________________________ */
 
-#videos_container {
+#tablet_container {
+	width: 100vw;
+	padding: 3em;
+	overflow: auto;
+}
 
+#videos_container {
+	background-color: white;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+.video_thumb {
+	width: calc(33.33% - .6em);
+	float: left;
+	margin: .2em;
+}
+
+.video_thumb img {
+	width: 100%;
+}
+
+.video_thumb img:hover {
+	cursor: pointer;
+}
+
+#video_player_container {
+	display: none;
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	left: 0;
+	top: 0;
+	padding: 3em;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+#videos_player {
+	height: 75vh;
+	background: #C7C7CC;
+}
+
+#close {
+	float: right;
+	font-size: 170%;
+	color: #FF2A68;
+	padding: .3em;
 }

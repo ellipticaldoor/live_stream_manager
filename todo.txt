@@ -1,4 +1,0 @@
-- Añadir login y registro
-- Asociar un color a cada usuario para cada video
-- Quitar interfaz de youtube
-- Hacer app de la tablet
