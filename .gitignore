@@ -12,3 +12,5 @@ todo.md
 .ftpconfig
 .sqlite3
 migrations/
+log.txt
+
