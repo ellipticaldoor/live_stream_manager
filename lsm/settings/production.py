@@ -1,4 +1,4 @@
-from withaliasing.settings.base import *
+from lsm.settings.base import *
 
 DEBUG = False
 
