@@ -5,5 +5,5 @@ from tablet import views
 
 urlpatterns = patterns(
 	'',
-	url(r'^videos/$', views.VideoListView.as_view(), name='videos'),
+	url(r'^tablet/$', views.VideoListView.as_view(), name='videos'),
 )
