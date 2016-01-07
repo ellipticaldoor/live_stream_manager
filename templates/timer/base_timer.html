@@ -3,6 +3,7 @@
 {% block content %}
 <div id="timer_container">
 	<div id="video">
+		<div class="video_separator"></div>
 		<div id="video_player"></div>
 	</div>
 
@@ -18,7 +19,7 @@ $(document).ready(function() {
 	var current_video = 0;
 
 	var youtube_videos = [
-		// {"linkID": "o-nr1nNC3ds", "date": "2016/01/06 00:59:00"},
+		// {"linkID": "pxM3tvHowaM", "date": "2016/01/06 00:59:00"},
 		// {"linkID": "jhFDyDgMVUI", "date": "2016/06/04 23:50:00"},
 		// {"linkID": "kfchvCyHmsc", "date": "2017/01/04 23:12:00"},
 		{% for video in object_list %}
