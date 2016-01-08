@@ -4,6 +4,8 @@
 
 {% block content %}
 <div id="tablet_container">
+	<input id="fullscreen" type="button" value="Ir a pantalla completa" onclick="toggleFullScreen()">
+
 	<div id="videos_container">
 		{% for video in object_list  %}
 			<div id="{{ video.videourlid }}" class="video_thumb">
@@ -44,7 +46,31 @@ $(document).ready(function() {
 		$( "iframe" ).remove();
 		$( '<div id="videos_player"></div>' ).insertBefore( "#close" );
 	});
+
 });
+
+function toggleFullScreen() {
+	if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+		if (document.documentElement.requestFullScreen) {
+			document.documentElement.requestFullScreen();
+			$( "#fullscreen" ).remove();
+		} else if (document.documentElement.mozRequestFullScreen) {
+			document.documentElement.mozRequestFullScreen();
+			$( "#fullscreen" ).remove();
+		} else if (document.documentElement.webkitRequestFullScreen) {
+			document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+			$( "#fullscreen" ).remove();
+		}
+	} else {
+		if (document.cancelFullScreen) {
+			document.cancelFullScreen();
+		} else if (document.mozCancelFullScreen) {
+			document.mozCancelFullScreen();
+		} else if (document.webkitCancelFullScreen) {
+			document.webkitCancelFullScreen();
+		}
+	}
+}
 </script>
 
 <script src="http://www.youtube.com/player_api"></script>

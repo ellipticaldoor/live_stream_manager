@@ -371,3 +371,10 @@ __________________________________________________________________________ */
 	color: white;
 	padding: .3em;
 }
+
+#fullscreen {
+	color: red;
+	border: 2px solid red;
+	width: 100%;
+	margin: 0;
+}
