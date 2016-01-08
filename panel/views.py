@@ -14,7 +14,7 @@ class TimerView(CreateView):
 	def get_context_data(self, **kwargs):
 		context = super(TimerView, self).get_context_data(**kwargs)
 		context['videos'] = Video.objects.filter(aired_date__gte=datetime.now())
-		context['next_video_date'] = context['videos'][0]
+		if context['videos']: context['next_video_date'] = context['videos'][0]
 		context['my_videos'] = Video.objects.filter(user=str(self.request.user))
 		context['all_videos'] = Video.objects.all()
 		return context
