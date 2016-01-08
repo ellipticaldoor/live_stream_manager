@@ -366,7 +366,7 @@ __________________________________________________________________________ */
 }
 
 #close {
-	float: right;
+	float: left;
 	font-size: 170%;
 	color: white;
 	padding: .3em;
@@ -377,4 +377,16 @@ __________________________________________________________________________ */
 	border: 2px solid red;
 	width: 100%;
 	margin: 0;
+}
+
+#fullscreen:hover {
+	cursor: pointer;
+}
+
+#ytcover {
+	position: fixed;
+	width: 150px;
+	height: 100vh;
+	background-color: black;
+	right: 0;
 }

@@ -55,10 +55,15 @@ $(document).ready(function() {
 			height: '100%',
 			videoId: linkID,
 			events: {
+				'onReady': onPlayerReady,
 				'onStateChange': onPlayerStateChange
 			},
 			playerVars: { 'autoplay': 1, 'controls': 1, 'showinfo': 0, 'fs': 0, 'rel': 0, 'iv_load_policy': 3 },
 		});
+	}
+
+	function onPlayerReady(event) {
+		event.target.playVideo();
 	}
 
 	function onPlayerStateChange(event) {

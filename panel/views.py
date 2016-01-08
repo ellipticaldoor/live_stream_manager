@@ -36,7 +36,7 @@ class EditTimerView(UpdateView):
 		context = super(EditTimerView, self).get_context_data(**kwargs)
 		context['edit_video'] = Video.objects.filter(pk=self.kwargs['pk'])[0]
 		context['videos'] = Video.objects.filter(aired_date__gte=datetime.now())
-		context['next_video_date'] = context['videos'][0]
+		if context['videos']: context['next_video_date'] = context['videos'][0]
 		print(Video.objects.filter(pk=self.kwargs['pk']))
 		return context
 

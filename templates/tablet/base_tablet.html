@@ -15,6 +15,7 @@
 	</div>
 
 	<div id="video_player_container">
+		<div id="ytcover"></div>
 		<div id="videos_player"></div>
 		<a id="close" href="#">close X</a>
 	</div>
@@ -36,8 +37,15 @@ $(document).ready(function() {
 			width: '100%',
 			height: '100%',
 			videoId: video_id,
+			events: {
+				'onReady': onPlayerReady,
+			},
 			playerVars: { 'autoplay': 1, 'controls': 1, 'showinfo': 0, 'fs': 0, 'rel': 0, 'iv_load_policy': 3 },
 		});
+	}
+
+	function onPlayerReady(event) {
+		event.target.playVideo();
 	}
 
 	$("#close").click(function( event ) {
