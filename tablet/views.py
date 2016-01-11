@@ -1,4 +1,4 @@
-from datetime import timezone
+from django.utils import timezone
 from django.views.generic import ListView
 
 from panel.models import Video
