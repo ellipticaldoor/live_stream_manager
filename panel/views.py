@@ -1,4 +1,4 @@
-from datetime import datetime
+from django.utils import timezone
 
 from django.views.generic.edit import CreateView, UpdateView
 
@@ -13,7 +13,7 @@ class TimerView(CreateView):
 
 	def get_context_data(self, **kwargs):
 		context = super(TimerView, self).get_context_data(**kwargs)
-		context['videos'] = Video.objects.filter(aired_date__gte=datetime.now())
+		context['videos'] = Video.objects.filter(aired_date__gte=timezone.now())
 		if context['videos']: context['next_video_date'] = context['videos'][0]
 		context['my_videos'] = Video.objects.filter(user=str(self.request.user))
 		context['all_videos'] = Video.objects.all()
@@ -35,7 +35,7 @@ class EditTimerView(UpdateView):
 	def get_context_data(self, **kwargs):
 		context = super(EditTimerView, self).get_context_data(**kwargs)
 		context['edit_video'] = Video.objects.filter(pk=self.kwargs['pk'])[0]
-		context['videos'] = Video.objects.filter(aired_date__gte=datetime.now())
+		context['videos'] = Video.objects.filter(aired_date__gte=timezone.now())
 		if context['videos']: context['next_video_date'] = context['videos'][0]
 		print(Video.objects.filter(pk=self.kwargs['pk']))
 		return context
