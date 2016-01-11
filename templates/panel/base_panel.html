@@ -41,6 +41,14 @@
 
 			<input id="add" type="submit" value="submit" />
 		</form>
+
+		{% if edit_video %}
+			<form class="form-horizontal" action="/{{ edit_video.pk }}/delete/"  method="post">
+				{% csrf_token %}
+
+				<input id="remove" type="submit" value="eliminar" />
+			</form>
+		{% endif %}
 	</div>
 </div>
 

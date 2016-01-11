@@ -1,6 +1,6 @@
 from django.utils import timezone
 
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from panel.models import Video
 from panel.forms import TimerForm
@@ -45,3 +45,9 @@ class EditTimerView(UpdateView):
 		obj.aired_date = '%s %s' % (self.request._post["date"], self.request._post["time"])
 		obj.save()
 		return super(EditTimerView, self).form_valid(form)
+
+
+class DeleteTimerView(DeleteView):
+	template_name = 'panel/base_panel.html'
+	success_url = '/panel/'
+	model = Video
