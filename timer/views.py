@@ -7,4 +7,4 @@ from panel.models import Video
 
 class TimerView(ListView):
 	template_name = 'timer/base_timer.html'
-	queryset = Video.objects.filter(aired_date__gte=timezone.now())
+	queryset = Video.objects.filter(aired_date__lt=timezone.now())
