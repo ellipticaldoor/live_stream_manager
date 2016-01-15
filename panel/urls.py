@@ -30,9 +30,13 @@ class NextVideoViewSet(viewsets.ModelViewSet):
 		queryset = self.queryset.filter(aired_date__gte=timezone.now())
 		return queryset
 
+class VideosViewSet(viewsets.ModelViewSet):
+	serializer_class = VideoSerializer
+	queryset = Video.objects.all()
 
 router = routers.DefaultRouter()
 router.register(r'next_videos', NextVideoViewSet)
+router.register(r'videos', VideosViewSet)
 
 urlpatterns = patterns(
 	'',

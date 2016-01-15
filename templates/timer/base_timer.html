@@ -28,13 +28,37 @@ $(document).ready(function() {
 			success: function(data){
 				youtube_videos = data;
 
-				console.log(youtube_videos.length);
-
 				if (youtube_videos.length == 0) {
 					setTimeout(function() { getVideos(); }, 2000);
 				}
 				else {
 					setTimer(youtube_videos[0]);
+				}
+			},
+			error: function(error) {
+				console.log(error);
+			},
+		});
+	}
+
+	function getVideoYTurl(videoid, videourlid) {
+		$.ajax({
+			type:'GET',
+			url: '/rest/videos/',
+			dataType: 'json',
+			success: function(data){
+				allvideos = data;
+
+				for (var i = 0, len = allvideos.length; i < len; i++) {
+					if (allvideos[i].videoid == videoid) {
+						if (allvideos[i].videourlid == "") {
+							getVideos();
+							console.log("empty yt url");
+						} else {
+							console.log( "video_url: " + allvideos[i].videourlid);
+							loadVideo(allvideos[i].videourlid);
+						}
+					}
 				}
 			},
 			error: function(error) {
@@ -54,14 +78,14 @@ $(document).ready(function() {
 		});
 
 		clock.on('finish.countdown', function(event) {
-			$('#timer').hide();
-			$('#video').show();
-
-			loadVideo(video.videourlid);
+			getVideoYTurl(video.videoid, video.videourlid);
 		});
 	}
 
 	function loadVideo(videourlid) {
+		$('#timer').hide();
+		$('#video').show();
+
 		var player = new YT.Player('video_player', {
 			width: '100%',
 			height: '100%',
