@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.conf.urls import patterns, url, include
 from django.contrib.auth.decorators import login_required
 from rest_framework import routers, serializers, viewsets
@@ -20,13 +21,13 @@ class VideoSerializer(serializers.HyperlinkedModelSerializer):
 		fields = ('videoid', 'user', 'videourlid', 'aired_date')
 
 
-class VideoViewSet(viewsets.ModelViewSet):
-	queryset = Video.objects.all()
+class NextVideoViewSet(viewsets.ModelViewSet):
+	queryset = Video.objects.filter(aired_date__gte=timezone.now())
 	serializer_class = VideoSerializer
 
 
 router = routers.DefaultRouter()
-router.register(r'video', VideoViewSet)
+router.register(r'next_videos', NextVideoViewSet)
 
 urlpatterns = patterns(
 	'',

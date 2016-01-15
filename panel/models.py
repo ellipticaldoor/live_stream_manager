@@ -6,7 +6,7 @@ from core.core import _createId
 class Video(models.Model):
 	videoid = models.CharField(primary_key=True, max_length=16, default=_createId)
 	user = models.ForeignKey(User, related_name='videos')
-	videourlid = models.CharField(max_length=500, unique=False)
+	videourlid = models.CharField(max_length=500, unique=False, blank=True, null=True)
 	aired_date = models.DateTimeField()
 	created = models.DateTimeField(auto_now_add=True)
 
