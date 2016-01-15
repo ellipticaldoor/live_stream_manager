@@ -18,14 +18,28 @@
 {% block js %}
 <script>
 $(document).ready(function() {
+	$.ajax({
+		type:'GET',
+		url: 'http://localhost:8000/rest/next_videos/',
+		// jsonp: 'callback',
+		dataType: 'json',
+		success: function(data){
+			console.log(data);
+		},
+		error: function(error) {
+			console.log(error);
+			console.log("error");
+		},
+	});
+
 	var current_video = 0;
 
 	var youtube_videos = [
-		// {"linkID": "pxM3tvHowaM", "date": "2016/01/06 00:59:00"},
-		// {"linkID": "jhFDyDgMVUI", "date": "2016/06/04 23:50:00"},
-		// {"linkID": "kfchvCyHmsc", "date": "2017/01/04 23:12:00"},
+		// {"videourlid": "pxM3tvHowaM", "aired_date": "2016/01/06 00:59:00"},
+		// {"videourlid": "jhFDyDgMVUI", "aired_date": "2016/06/04 23:50:00"},
+		// {"videourlid": "kfchvCyHmsc", "aired_date": "2017/01/04 23:12:00"},
 		{% for video in object_list %}
-			{"linkID": "{{ video.videourlid }}", "date": "{{ video.aired_date | date:"Y/m/d H:i" }}:00"},
+			{"videourlid": "{{ video.videourlid }}", "aired_date": "{{ video.aired_date | date:"Y/m/d H:i" }}:00"},
 		{% endfor %}
 	]
 
@@ -34,7 +48,7 @@ $(document).ready(function() {
 	function setTimer(video) {
 		var clock = $('#clock');
 
-		clock.countdown(video.date);
+		clock.countdown(video.aired_date);
 
 		clock.on('update.countdown', function(event) {
 			var totalHours = event.offset.totalDays * 24 + event.offset.hours;
@@ -45,15 +59,15 @@ $(document).ready(function() {
 			$('#timer').hide();
 			$('#video').show();
 
-			loadVideo(video.linkID);
+			loadVideo(video.videourlid);
 		});
 	}
 
-	function loadVideo(linkID) {
+	function loadVideo(videourlid) {
 		var player = new YT.Player('video_player', {
 			width: '100%',
 			height: '100%',
-			videoId: linkID,
+			videoId: videourlid,
 			events: {
 				'onReady': onPlayerReady,
 				'onStateChange': onPlayerStateChange
