@@ -15,6 +15,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 class VideoSerializer(serializers.HyperlinkedModelSerializer):
 	user = UserSerializer()
+	aired_date = serializers.DateTimeField(format="%Y-%m-%d %H:%M", required=False, read_only=True)
 
 	class Meta:
 		model = Video
@@ -22,8 +23,12 @@ class VideoSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class NextVideoViewSet(viewsets.ModelViewSet):
-	queryset = Video.objects.filter(aired_date__gte=timezone.now())
 	serializer_class = VideoSerializer
+	queryset = Video.objects.all()
+
+	def get_queryset(self):
+		queryset = self.queryset.filter(aired_date__gte=timezone.now())
+		return queryset
 
 
 router = routers.DefaultRouter()
