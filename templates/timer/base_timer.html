@@ -19,6 +19,23 @@
 <script>
 $(document).ready(function() {
 	getVideos();
+	checkVideos();
+
+
+	function checkVideos() {
+		$.ajax({
+			type:'GET',
+			url: '/rest/next_videos/',
+			dataType: 'json',
+			success: function(data){
+				setTimeout(function() { checkVideos(); }, 5000);
+			},
+			error: function(error) {
+				console.log(error);
+				setTimeout(function() { checkVideos(); }, 5000);
+			},
+		});
+	}
 
 	function getVideos() {
 		$.ajax({
@@ -37,6 +54,7 @@ $(document).ready(function() {
 			},
 			error: function(error) {
 				console.log(error);
+				setTimeout(function() { getVideos(); }, 2000);
 			},
 		});
 	}
@@ -63,6 +81,7 @@ $(document).ready(function() {
 			},
 			error: function(error) {
 				console.log(error);
+				setTimeout(function() { getVideoYTurl(videoid, videourlid) }, 2000);
 			},
 		});
 	}
