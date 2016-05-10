@@ -1,0 +1,5 @@
+#!/bin/bash
+# This hook is sourced after this virtualenv is activated.
+export DJANGO_SETTINGS_MODULE='lsm.settings.development'
+export SECRET_KEY='SECRET_KEY'
+export LANGUAGE='en-us'

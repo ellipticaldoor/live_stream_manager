@@ -13,4 +13,4 @@ todo.md
 .sqlite3
 migrations/
 log.txt
-
+db.sqlite3

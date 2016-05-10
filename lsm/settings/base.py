@@ -56,16 +56,16 @@ ROOT_URLCONF = 'lsm.urls'
 
 WSGI_APPLICATION = 'lsm.wsgi.application'
 
-DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.postgresql_psycopg2',
-		'NAME': get_env('DB_NAME'),
-		'USER': get_env('DB_USER'),
-		'PASSWORD': get_env('DB_PASSWORD'),
-		'HOST': get_env('DB_HOST'),
-		'PORT': get_env('DB_PORT'),
-	}
-}
+# DATABASES = {
+# 	'default': {
+# 		'ENGINE': 'django.db.backends.postgresql_psycopg2',
+# 		'NAME': get_env('DB_NAME'),
+# 		'USER': get_env('DB_USER'),
+# 		'PASSWORD': get_env('DB_PASSWORD'),
+# 		'HOST': get_env('DB_HOST'),
+# 		'PORT': get_env('DB_PORT'),
+# 	}
+# }
 
 LANGUAGE_CODE = get_env('LANGUAGE')
 
