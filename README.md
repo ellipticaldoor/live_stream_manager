@@ -1,4 +1,4 @@
-# Live stream manager
+# YouTube countdown stream
 
 A tool for managing live and recorded youtube videos between different users.
 
