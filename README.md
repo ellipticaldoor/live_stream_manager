@@ -17,3 +17,6 @@ The following directions are available in the browser when the project is runnin
 ![screenshot_3](https://raw.githubusercontent.com/ellipticaldoor/youtube_countdown_stream/master/resources/screenshots/screenshot_3.png)
 ![screenshot_1](https://raw.githubusercontent.com/ellipticaldoor/youtube_countdown_stream/master/resources/screenshots/screenshot_1.jpg)
 ![screenshot_2](https://raw.githubusercontent.com/ellipticaldoor/youtube_countdown_stream/master/resources/screenshots/screenshot_2.jpg)
+
+## More info
+This app was made for [Ahora sabemos lo que quiso decir](https://unaantropologiadelaemergencia.wordpress.com/portfolio/ahora-sabemos-lo-que-quiso-decir/).
